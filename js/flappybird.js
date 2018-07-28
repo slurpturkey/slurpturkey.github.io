@@ -105,10 +105,15 @@ function keyDownHandler(e){
 }
 
 function clickHandler(e){
+    var relativeX = e.clientX - canvas.offsetLeft;
+    var relativeY = e.clientY - canvas.offsetTop;
+
     if(state == stateEnum.END_SCREEN){
-        console.log(e.clientX + ", " + e.clientY);
-        if(e.clientX > button.x && e.clientX < button.x + button.w && e.clientY > button.y && e.clientY < button.y + button.h){
+        console.log(relativeX + ", " + relativeY);
+        console.log(button.x + " - " + (button.x + button.w) + ", " + button.y + ", " + (button.y + button.h));
+        if(relativeX > button.x && relativeX < (button.x + button.w) && relativeY > button.y && relativeY < (button.y + button.h)){
             console.log("button press");
+            state = stateEnum.GAME;
             //game();
         }
     }else{

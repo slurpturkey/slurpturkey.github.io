@@ -1,8 +1,8 @@
 TODO:
 
-* Fix "Start Again" button on end screen.
+* Fix mouse co-ordinates for "Start Again" button
 * Add collision detection for top of screen?
-* Add pillars in.
+* Add pillars in
 * Get pillars to move
 * Add collision detection for pillars
 * Figure out texture loading
