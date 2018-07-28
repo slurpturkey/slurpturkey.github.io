@@ -1,0 +1,9 @@
+TODO:
+
+* Fix "Start Again" button on end screen.
+* Add collision detection for top of screen?
+* Add pillars in.
+* Get pillars to move
+* Add collision detection for pillars
+* Figure out texture loading
+* Create a menu screen & game state
