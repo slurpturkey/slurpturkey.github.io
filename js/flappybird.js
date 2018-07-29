@@ -20,23 +20,28 @@ var player = {
     isFalling: true
 };
 
-var button = {
-    x: canvas.width / 2,
-    y: (canvas.height / 2) + 70,
-    w: 150,
-    h: 40
-}
-
 function game(){
     if(state == stateEnum.GAME){
+        
         draw();
-    
+        
         move();
         collisionDetection();
-        requestAnimationFrame(game);
+
     }else if(state == stateEnum.END_SCREEN){
         endScreen();
     }
+    requestAnimationFrame(game);
+}
+
+function setPlayer(){
+    player.x = 80;
+    player.y = canvas.height / 2;
+    player.radius = 20;
+    player.color = "#FF0000";
+    player.velocity = 0;
+    player.acceleration = -0.3;
+    player.isFalling = true;
 }
 
 function draw(){
@@ -72,55 +77,33 @@ function jump(){
 }
 
 function endScreen(){
-    inProgress = false;
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.font = "30px Arial";
     ctx.textAlign = "center";
     ctx.fillStyle = "#FF5522";
     ctx.fillText("Game Over!", canvas.width / 2, canvas.height / 2);
 
-    
-
-    ctx.beginPath();
-    ctx.rect(button.x - (button.w / 2), button.y - (button.h / 2), button.w, button.h);
-    ctx.fillStyle = "#00FF00";
-    ctx.fill();
-    ctx.closePath();
-
     ctx.font = "20px Arial";
     ctx.fillStyle = "#000000";
-    ctx.fillText("Start Again", button.x, button.y + (button.h / 5));
+    ctx.fillText("Press space to start again.", canvas.width / 2, (canvas.height / 2) + 50);
 }
 
 document.addEventListener("keypress", keyDownHandler, false);
-document.addEventListener("click", clickHandler, false);
 
 function keyDownHandler(e){
     if(e.key == " "){
-        console.log("Space bar pressed.");
-        player.isFalling = false;
-    }else{
-        return;
-    }
-}
-
-function clickHandler(e){
-    var relativeX = e.clientX - canvas.offsetLeft;
-    var relativeY = e.clientY - canvas.offsetTop;
-
-    if(state == stateEnum.END_SCREEN){
-        console.log(relativeX + ", " + relativeY);
-        console.log(button.x + " - " + (button.x + button.w) + ", " + button.y + ", " + (button.y + button.h));
-        if(relativeX > button.x && relativeX < (button.x + button.w) && relativeY > button.y && relativeY < (button.y + button.h)){
-            console.log("button press");
+        if(state == stateEnum.GAME){
+            console.log("Space bar pressed.");
+            player.isFalling = false;
+        }else if(state == stateEnum.END_SCREEN){
+            setPlayer()
             state = stateEnum.GAME;
-            //game();
+            return;
         }
     }else{
         return;
     }
 }
-
 
 function collisionDetection(){
     if(player.y > canvas.height){
