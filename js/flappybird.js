@@ -1,7 +1,7 @@
 var canvas = document.getElementById("myCanvas");
 var ctx = canvas.getContext("2d");
 
-const JUMP_VELOCITY = 13;
+const JUMP_VELOCITY = 10;
 
 const stateEnum = {
     GAME: 1,
