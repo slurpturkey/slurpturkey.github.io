@@ -1,6 +1,5 @@
 TODO:
 
-* Fix mouse co-ordinates for "Start Again" button
 * Add collision detection for top of screen?
 * Add pillars in
 * Get pillars to move
